@@ -24,13 +24,39 @@ export default function Home() {
   }, [])
 
   return (
-    <main style={{ padding: "40px" }}>
-      <h1>Healers</h1>
+  <main style={{ padding: "40px" }}>
+    <h1>Healers</h1>
 
-      {loading && <p>Loading...</p>}
-      {!loading && data.length === 0 && <p>No healers found</p>}
+    {loading && <p>Loading...</p>}
 
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </main>
-  )
+    {!loading && data.length === 0 && <p>No healers found</p>}
+
+    <div style={{ display: "grid", gap: "20px", marginTop: "20px" }}>
+      {data.map((healer: any) => (
+        <div
+          key={healer.id}
+          style={{
+            border: "1px solid #ccc",
+            padding: "20px",
+            borderRadius: "10px",
+          }}
+        >
+          <h2>{healer.healer_name}</h2>
+          <p><strong>Experience:</strong> {healer.experience_years || "Not specified"} years</p>
+          <p>{healer.bio}</p>
+
+          {healer.payment_link && (
+            <a
+              href={healer.payment_link}
+              target="_blank"
+              style={{ color: "blue" }}
+            >
+              Pay Now
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </main>
+)
 }
