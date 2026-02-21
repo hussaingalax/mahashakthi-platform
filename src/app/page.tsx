@@ -9,6 +9,8 @@ type Healer = {
   experience_years: string | null
   bio: string | null
   payment_link: string | null
+  profile_photo: string | null
+  slug: string | null
 }
 
 export default function Home() {
@@ -49,34 +51,44 @@ export default function Home() {
 
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {data.map((healer) => (
-        <div
-          key={healer.id}
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition duration-300"
+  <div
+    key={healer.id}
+    className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+  >
+    {healer.profile_photo && (
+      <img
+        src={healer.profile_photo}
+        alt={healer.healer_name}
+        className="w-full h-48 object-cover"
+      />
+    )}
+
+    <div className="p-6">
+      <h2 className="text-xl font-semibold mb-2">
+        {healer.healer_name}
+      </h2>
+
+      <p className="text-sm text-gray-600 mb-2">
+        <span className="font-medium">Experience:</span>{" "}
+        {healer.experience_years || "Not specified"} years
+      </p>
+
+      <p className="text-gray-700 mb-4">
+        {healer.bio}
+      </p>
+
+      {healer.payment_link && (
+        <a
+          href={healer.payment_link}
+          target="_blank"
+          className="inline-block bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
         >
-          <h2 className="text-xl font-semibold mb-2">
-            {healer.healer_name}
-          </h2>
-
-          <p className="text-sm text-gray-600 mb-2">
-            <span className="font-medium">Experience:</span>{" "}
-            {healer.experience_years || "Not specified"} years
-          </p>
-
-          <p className="text-gray-700 mb-4">
-            {healer.bio}
-          </p>
-
-          {healer.payment_link && (
-            <a
-              href={healer.payment_link}
-              target="_blank"
-              className="inline-block bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
-            >
-              Pay Now
-            </a>
-          )}
-        </div>
-      ))}
+          Pay Now
+        </a>
+      )}
+    </div>
+  </div>
+))}
     </div>
   </main>
 )
