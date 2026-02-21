@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 
 export default function Home() {
-  const [data, setData] = useState<any[]>([])
+  const [data, setData] = useState<unknown[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
