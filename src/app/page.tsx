@@ -32,38 +32,52 @@ export default function Home() {
   }, [])
 
   return (
-    <main style={{ padding: "40px" }}>
-      <h1>Healers</h1>
+  <main className="min-h-screen bg-gray-100 p-10">
+    <h1 className="text-3xl font-bold mb-8 text-center">
+      Mahashakthi Healers
+    </h1>
 
-      {loading && <p>Loading...</p>}
+    {loading && (
+      <p className="text-center text-gray-500">Loading...</p>
+    )}
 
-      {!loading && data.length === 0 && <p>No healers found</p>}
+    {!loading && data.length === 0 && (
+      <p className="text-center text-gray-500">
+        No healers found
+      </p>
+    )}
 
-      <div style={{ display: "grid", gap: "20px", marginTop: "20px" }}>
-        {data.map((healer) => (
-          <div
-            key={healer.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "20px",
-              borderRadius: "10px",
-            }}
-          >
-            <h2>{healer.healer_name}</h2>
-            <p>
-              <strong>Experience:</strong>{" "}
-              {healer.experience_years || "Not specified"} years
-            </p>
-            <p>{healer.bio}</p>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data.map((healer) => (
+        <div
+          key={healer.id}
+          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition duration-300"
+        >
+          <h2 className="text-xl font-semibold mb-2">
+            {healer.healer_name}
+          </h2>
 
-            {healer.payment_link && (
-              <a href={healer.payment_link} target="_blank">
-                Pay Now
-              </a>
-            )}
-          </div>
-        ))}
-      </div>
-    </main>
-  )
+          <p className="text-sm text-gray-600 mb-2">
+            <span className="font-medium">Experience:</span>{" "}
+            {healer.experience_years || "Not specified"} years
+          </p>
+
+          <p className="text-gray-700 mb-4">
+            {healer.bio}
+          </p>
+
+          {healer.payment_link && (
+            <a
+              href={healer.payment_link}
+              target="_blank"
+              className="inline-block bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+            >
+              Pay Now
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </main>
+)
 }
