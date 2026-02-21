@@ -28,7 +28,6 @@ export default function Home() {
       <h1>Healers</h1>
 
       {loading && <p>Loading...</p>}
-
       {!loading && data.length === 0 && <p>No healers found</p>}
 
       <pre>{JSON.stringify(data, null, 2)}</pre>
