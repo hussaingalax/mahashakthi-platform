@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "preview": "opennextjs-cloudflare build",
+  "deploy": "opennextjs-cloudflare deploy"
+},
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",
     "next": "^16.1.6",
