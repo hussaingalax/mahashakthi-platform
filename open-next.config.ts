@@ -1,5 +1,3 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 
-export default defineCloudflareConfig({
-  appPath: ".",
-});
+export default defineCloudflareConfig({});
